@@ -1,0 +1,70 @@
+# ─────────────────────────────────────────
+#  IntelliJ IDEA
+# ─────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+*.ipr
+.shelf/
+
+# ─────────────────────────────────────────
+#  Compilação e Build Java
+# ─────────────────────────────────────────
+out/
+build/
+target/
+
+# Bytecode Java (arquivos gerados pelo compilador)
+*.class
+
+# Arquivos JAR e WAR gerados localmente
+*.jar
+*.war
+*.ear
+
+# ─────────────────────────────────────────
+#  Maven
+# ─────────────────────────────────────────
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ─────────────────────────────────────────
+#  Gradle
+# ─────────────────────────────────────────
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# ─────────────────────────────────────────
+#  Variáveis de ambiente e configurações sensíveis
+#  IMPORTANTE: nunca versione senhas, tokens ou chaves de API
+# ─────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.properties.local
+secrets.properties
+
+# ─────────────────────────────────────────
+#  Logs
+# ─────────────────────────────────────────
+*.log
+logs/
+log/
+
+# ─────────────────────────────────────────
+#  Sistema operacional — Mac
+# ─────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# ─────────────────────────────────────────
+#  Arquivos temporários
+# ─────────────────────────────────────────
+*.tmp
+*.swp
+*.bak
+*~
