@@ -89,12 +89,9 @@ public class Transaction {
                 ", type=" + type +
                 ", value=R$" + String.format("%.2f", value) +
                 ", date=" + date +
-                ", description='" + description + '\'' + // Explicando ('\''): Observe que após o "=" da String "description" e "category"
-                ", category='" + category + '\'' +       // tem uma aspas simples ('). Isto serve apenas para estética do output. Porém temos
-                ", essential=" + essential +             // que fechar o resultado da String que será impresso, por isso se usa o '\''.
-                '}';                                     // Vejamos que (/') está dentro de aspas simples (''), o que significa que é um CHAR.
-                                                         // Sendo assim, (/') é mesmo que uma aspas simples ('). Podemos dizer que (/') é um
-                                                         // código para gerar uma aspas simples na espécie de um CHAR. Fechando o resultado das
-                                                         // "description" e "category" com aspas simples, deixando o output mais organizado.
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", essential=" + essential +
+                '}';
     }
 }
