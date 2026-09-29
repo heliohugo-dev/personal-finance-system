@@ -27,7 +27,10 @@ public class Transaction {
     }
 
     //Getter and Setter -> ID
-    public long getId () { return id; }
+    public long getId() {
+        return id;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -36,49 +39,56 @@ public class Transaction {
     public TransactionType getType() {
         return type;
     }
+
     public void setType(TransactionType type) {
         this.type = type;
     }
 
     //Getter and Setter -> VALUE
-    public double getValue(){
+    public double getValue() {
         return value;
     }
+
     public void setValue(double value) {
         if (value <= 0) {
             throw new IllegalArgumentException("Valor deve ser positivo");
         }
-        this.value = value; }
+        this.value = value;
+    }
 
     //Getter and Setter -> LOCALDATE
-    public LocalDate getDate(){
+    public LocalDate getDate() {
         return date;
     }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
     //Getter and Setter -> DESCRIPTION
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
-    public void setDescription(String description){
+
+    public void setDescription(String description) {
         this.description = description;
     }
 
     //Getter and Setter -> CATEGORY
-    public String getCategory(){
+    public String getCategory() {
         return category;
     }
-    public void setCategory(String category){
+
+    public void setCategory(String category) {
         this.category = category;
     }
 
     //Getter and Setter -> ESSENTIAL OR NO
-    public boolean isEssential(){
+    public boolean isEssential() {
         return essential;
     }
-    public void setEssential(boolean essential){
+
+    public void setEssential(boolean essential) {
         this.essential = essential;
     }
 

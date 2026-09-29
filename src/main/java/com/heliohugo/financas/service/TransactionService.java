@@ -5,6 +5,7 @@ import com.heliohugo.financas.model.TransactionType;
 import com.heliohugo.financas.repository.TransactionRepository;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TransactionService {
     //ATRIBUTS
@@ -16,17 +17,25 @@ public class TransactionService {
     }
 
     //METHODS
-    //01
     public void register(Transaction transaction) {
         repository.insert(transaction);
     }
 
-    //02
+    public ArrayList<Transaction> searchByCategory(String category) {
+        ArrayList<Transaction> searchResults = new ArrayList<>();
+
+        for (Transaction transaction : getAll()) {
+            if (transaction.getCategory().equalsIgnoreCase(category)) {
+                searchResults.add(transaction);
+            }
+        }
+        return searchResults;
+    }
+
     public ArrayList<Transaction> getAll() {
         return repository.findAll();
     }
 
-    //03
     public double calculateBalance() {
         ArrayList<Transaction> transactions = getAll();
         double balance = 0.0;
