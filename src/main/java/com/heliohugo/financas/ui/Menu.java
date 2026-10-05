@@ -29,6 +29,7 @@ public class Menu {
             System.out.println("2. List all transactions");
             System.out.println("3. Show balance");
             System.out.println("4. Search transaction by category");
+            System.out.println("5. Filter transactions by year and month");
             System.out.println("0. Exit");
             System.out.println("================");
             options = readInt("Choose an option: ");
@@ -98,6 +99,19 @@ public class Menu {
                     System.out.println("No transactions found for this category.\n");
                 } else {
                     for (Transaction transaction : searchResults) {
+                        System.out.println(transaction + "\n");
+                    }
+                }
+
+                // FILTER TRANSACTIONS BY YEAR AND MONTH
+            } else if (options == 5) {
+                int year = readInt("Year: ");
+                int month = readInt("Month: ");
+                ArrayList<Transaction> filter = service.findByMonth(year, month);
+                if (filter.isEmpty()) {
+                    System.out.println("No transactions found for this period.\n");
+                } else {
+                    for (Transaction transaction : filter) {
                         System.out.println(transaction + "\n");
                     }
                 }

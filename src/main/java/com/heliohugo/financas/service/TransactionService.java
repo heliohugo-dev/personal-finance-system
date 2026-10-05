@@ -5,7 +5,6 @@ import com.heliohugo.financas.model.TransactionType;
 import com.heliohugo.financas.repository.TransactionRepository;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TransactionService {
     //ATRIBUTS
@@ -32,9 +31,24 @@ public class TransactionService {
         return searchResults;
     }
 
+
+    public ArrayList<Transaction> findByMonth(int year, int month) {
+        ArrayList<Transaction> results = new ArrayList<>();
+
+        for (Transaction transaction : getAll()) {
+            if (transaction.getDate().getYear() == year && transaction.getDate().getMonthValue() == month) {
+                results.add(transaction);
+            }
+        }
+
+        return results;
+    }
+
+
     public ArrayList<Transaction> getAll() {
         return repository.findAll();
     }
+
 
     public double calculateBalance() {
         ArrayList<Transaction> transactions = getAll();
