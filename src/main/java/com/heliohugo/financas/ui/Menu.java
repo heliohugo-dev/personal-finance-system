@@ -81,8 +81,13 @@ public class Menu {
 
                 // LIST TRANSACTIONS
             } else if (options == 2) {
+                ArrayList<Transaction> transactions = service.getAll();
+                if (transactions.isEmpty()) {
+                    System.out.println("No transaction was found.\n");
+                } else {
                 for (Transaction transaction : service.getAll()) {
                     System.out.println(transaction);
+                    }
                 }
 
                 // SHOW BALANCE
@@ -116,8 +121,7 @@ public class Menu {
                     }
                 }
             }
-
-
+            
         } while (options != 0);
     }
 
