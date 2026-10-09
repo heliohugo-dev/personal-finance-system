@@ -12,6 +12,9 @@ public class Transaction {
     private String category;
     private boolean essential;
 
+    public Transaction() {
+    }
+
     public Transaction(
             long id, TransactionType type, double value,
             LocalDate date, String description, String category,
