@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.heliohugo.financas.model.Transaction;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +38,8 @@ public class TransactionRepository {
     private void loadFromFile() {
         if (file.exists()) {
             try {
-                transactions = mapper.readValue(file, new TypeReference<ArrayList<Transaction>>() {});
+                transactions = mapper.readValue(file, new TypeReference<ArrayList<Transaction>>() {
+                });
             } catch (IOException e) {
                 System.out.println("Error loading transactions from file: " + e.getMessage());
             }
@@ -48,4 +50,23 @@ public class TransactionRepository {
         return new ArrayList<Transaction>(transactions);
     }
 
+    public Transaction findById(long id) {
+        for (int i = 0; i < transactions.size(); i++) {
+            if (transactions.get(i).getId() == id) {
+                return transactions.get(i);
+            }
+        }
+        return null;
+    }
+
+    public boolean update(Transaction transaction) {
+        for (int i = 0; i < transactions.size(); i++) {
+            if (transactions.get(i).getId() == transaction.getId()) {
+                transactions.set(i, transaction);
+                saveToFile();
+                return true;
+            }
+        }
+        return false;
+    }
 }

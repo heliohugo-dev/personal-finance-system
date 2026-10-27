@@ -30,6 +30,7 @@ public class Menu {
             System.out.println("3. Show balance");
             System.out.println("4. Search transaction by category");
             System.out.println("5. Filter transactions by year and month");
+            System.out.println("6. Update transaction");
             System.out.println("0. Exit");
             System.out.println("================");
             options = readInt("Choose an option: ");
@@ -85,8 +86,8 @@ public class Menu {
                 if (transactions.isEmpty()) {
                     System.out.println("No transaction was found.\n");
                 } else {
-                for (Transaction transaction : service.getAll()) {
-                    System.out.println(transaction);
+                    for (Transaction transaction : service.getAll()) {
+                        System.out.println(transaction + "\n");
                     }
                 }
 
@@ -121,7 +122,31 @@ public class Menu {
                     }
                 }
             }
-            
+            // UPDATE OF TRANSACTIONS
+            else if (options == 6) {
+                long id = readLong("Which transaction ID would you like to change?\n");
+                Transaction existing = service.findById(id);
+                if (existing == null) {
+                    System.out.println("Transaction ID not found.\n");
+                } else {
+                    System.out.println("Transaction found. Enter the new data below:");
+                    int typeChoice = readInt("1. REVENUE | 2. EXPENSE: ");
+                    TransactionType type = (typeChoice == 1) ? TransactionType.REVENUE : TransactionType.EXPENSE;
+                    double value = readDouble("Value: ");
+                    LocalDate date = readDate("Date: ");
+                    System.out.println("Description: ");
+                    String description = scanner.nextLine();
+                    System.out.println("Category: ");
+                    String category = scanner.nextLine();
+                    int essentialChoice = readInt("1. Essential | 2. Non-essential: ");
+                    boolean essential = (essentialChoice == 1);
+
+                    Transaction update = new Transaction(id, type, value, date, description, category, essential);
+                    service.update(update);
+                    System.out.println("Transaction updated successfully!\n");
+                }
+            }
+
         } while (options != 0);
     }
 
@@ -174,6 +199,6 @@ public class Menu {
                 System.out.println("Invalid date. Try again.");
             }
         }
-
     }
+
 }

@@ -7,22 +7,19 @@ import com.heliohugo.financas.repository.TransactionRepository;
 import java.util.ArrayList;
 
 public class TransactionService {
-    //ATRIBUTS
+
     private TransactionRepository repository;
 
-    //CONSTRUCTOR
     public TransactionService(TransactionRepository repository) {
         this.repository = repository;
     }
 
-    //METHODS
     public void register(Transaction transaction) {
         repository.insert(transaction);
     }
 
     public ArrayList<Transaction> searchByCategory(String category) {
         ArrayList<Transaction> searchResults = new ArrayList<>();
-
         for (Transaction transaction : getAll()) {
             if (transaction.getCategory().equalsIgnoreCase(category)) {
                 searchResults.add(transaction);
@@ -31,19 +28,23 @@ public class TransactionService {
         return searchResults;
     }
 
-
     public ArrayList<Transaction> findByMonth(int year, int month) {
         ArrayList<Transaction> results = new ArrayList<>();
-
         for (Transaction transaction : getAll()) {
             if (transaction.getDate().getYear() == year && transaction.getDate().getMonthValue() == month) {
                 results.add(transaction);
             }
         }
-
         return results;
     }
 
+    public Transaction findById(long id) {
+        return repository.findById(id);
+    }
+
+    public boolean update(Transaction transaction) {
+        return repository.update(transaction);
+    }
 
     public ArrayList<Transaction> getAll() {
         return repository.findAll();
@@ -54,7 +55,7 @@ public class TransactionService {
         ArrayList<Transaction> transactions = getAll();
         double balance = 0.0;
 
-        for (Transaction transaction : transactions) { //for (TipoElemento apelido : ColecaoOuArray) { ... }
+        for (Transaction transaction : transactions) {
             if (transaction.getType() == TransactionType.REVENUE) {
                 balance += transaction.getValue();
             } else {
